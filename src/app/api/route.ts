@@ -14,6 +14,13 @@ export async function GET() {
       return result;
     }
   );
-
-  return NextResponse?.json({ data: data || [] });
+  return NextResponse?.json(
+    { data: data || [] },
+    {
+      status: 200,
+      headers: {
+        "Cache-Control": "no-store",
+      },
+    }
+  );
 }
