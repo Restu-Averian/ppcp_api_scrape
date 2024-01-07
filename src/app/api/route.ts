@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import cloudinary from "../cloudinary";
 
 export async function GET() {
-  const randNum = Math.floor(Math.random() * 10 + 1);
+  const randNum = Math.floor(Math.random() * 10) + 1;
 
   const data = await cloudinary?.api?.resources(
     {
