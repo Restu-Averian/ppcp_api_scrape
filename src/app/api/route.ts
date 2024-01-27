@@ -1,13 +1,18 @@
 import { NextResponse } from "next/server";
 import cloudinary from "../cloudinary";
 
-export async function GET() {
+export async function GET(req: Request) {
+  const url = new URL(req?.url);
+  const searchParam = new URLSearchParams(url.searchParams);
+
+  const num = searchParam?.get("num");
+
   const randNum = Math.floor(Math.random() * 10) + 1;
 
   const data = await cloudinary?.api?.resources(
     {
       type: "upload",
-      prefix: `ppcp/${randNum}/`, // add your folder
+      prefix: `ppcp/${num || randNum}/`, // add your folder
     },
     function (error, result) {
       if (error) return error;
